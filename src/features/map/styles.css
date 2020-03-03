@@ -1,0 +1,15 @@
+.tile {
+  display: inline-flex;
+}
+
+.rock {
+  background-image: url('/public/assets/props\ n\ decorations/generic-rpg-rock03.png');
+}
+
+.tree {
+  background-image: url('/public/assets/props\ n\ decorations/generic-rpg-tree01.png');
+}
+
+.grass {
+  background-image: url('/public/assets/tiles/generic-rpg-tile03.png');
+}

@@ -1,12 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import walkSprite from '../../assets/chars/gabe/gabe-idle-run.png'
+import handleMovement from './movement'
+import walkSprite from '../../assets/gabe/gabe-idle-run.png'
 
 function Player(props) {
   return(
     <div
      style={{
-       position: 'relative',
+       position: 'absolute',
        top: props.position[1],
        left: props.position[0],
        backgroundImage: `url('${walkSprite}')`,
@@ -25,4 +26,4 @@ function mapStateToProps(state){
   }
 }
 
-export default connect(mapStateToProps)(Player)
+export default connect(mapStateToProps)(handleMovement(Player))
