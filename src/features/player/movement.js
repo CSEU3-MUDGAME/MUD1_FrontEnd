@@ -2,7 +2,14 @@ import store from '../../config/store'
 import { SPRITE_SIZE, MAP_WIDTH, MAP_HEIGHT } from '../../config/constants'
 
 export default function handleMovement(player) {
-  
+  function attemptMove(direction){
+    const oldPos = store.getState().player.position
+    const newPos = getNewPosition(direction)
+
+    if(observeBoundaries(oldPos, newPos) && observeImpassable(oldPos,newPos)){
+      directionMove(newPos)
+    }
+  }
   function getNewPosition(direction) {
     const oldPos = store.getState().player.position
     
@@ -22,16 +29,24 @@ export default function handleMovement(player) {
 
   function observeBoundaries (oldPos, newPos) {
     return (newPos[0] >= 0 && newPos[0] <= MAP_WIDTH &&
-      newPos[1] >= 0 && newPos[1] <= MAP_HEIGHT) ? newPos : oldPos
+      newPos[1] >= 0 && newPos[1] <= MAP_HEIGHT) ? true : false
+  }
+
+  function observeImpassable(oldPos, newPos){
+    const tiles = store.getState().map.tiles
+    const y = newPos[1] / 23
+    const x = newPos[0] / 23
+    const nextTile = tiles[y][x]
+
+    return nextTile < 2 ? true : false
   }
   
-  function directionMove(direction){
-    const oldPos = store.getState().player.position
+  function directionMove(newPos){
     
     store.dispatch({
       type: 'MOVE_PLAYER',
       payload: {
-        position: observeBoundaries(oldPos, getNewPosition(direction))
+        position: newPos
       }
     })
   }
@@ -41,13 +56,13 @@ export default function handleMovement(player) {
 
     switch(e.keyCode){
       case 37:
-        return directionMove('WEST')
+        return attemptMove('WEST')
       case 38:
-        return directionMove('NORTH')
+        return attemptMove('NORTH')
       case 39:
-        return directionMove('EAST')
+        return attemptMove('EAST')
       case 40:
-        return directionMove('SOUTH')
+        return attemptMove('SOUTH')
       default:
         console.log(e.keyCode)
     }
