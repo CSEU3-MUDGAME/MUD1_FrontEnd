@@ -55,7 +55,7 @@ function Map(props){
         top: '0px',
         left: '0px',
         width: '1600px',
-        height: '400px',
+        height: '830px',
         border: '4px solid white',
         backgroundColor: '#6DF7B1'
       }}>
