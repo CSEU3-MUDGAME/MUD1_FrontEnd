@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux'
 import './styles.css'
 
 function Map(props){
@@ -6,10 +7,20 @@ function Map(props){
     switch(type){
       case 0:
         return 'grass'
+      case 1:
+        return 'clay'
+      case 2:
+        return 'vfence'
+      case 3:
+        return 'hfence'
+      case 4:
+        return 'jfence'
       case 5:
         return 'rock'
       case 6:
         return 'tree'
+      case 7:
+        return 'water'
       default:
         return 'grass'
     }
@@ -19,8 +30,8 @@ function Map(props){
     return <div
       className={`${getTileSprite(props.tile)}`}
       style={{
-        height: '40px',
-        minWidth: '40px'
+        minHeight: '20px',
+        minWidth: '20px'
       }}
     ></div>
   }
@@ -43,9 +54,10 @@ function Map(props){
         position: 'relative',
         top: '0px',
         left: '0px',
-        width: '800px',
+        width: '1600px',
         height: '400px',
-        border: '4px solid white'
+        border: '4px solid white',
+        backgroundColor: '#6DF7B1'
       }}>
        {
          props.tiles.map( row => <MapRow tiles={row} />)
@@ -54,5 +66,10 @@ function Map(props){
   )
 }
 
+function mapStateToProps(state){
+  return {
+    tiles: state.map.tiles
+  }
+}
 
-export default Map;
+export default connect(mapStateToProps)(Map);

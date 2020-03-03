@@ -3,13 +3,60 @@
 }
 
 .rock {
-  background-image: url('/public/assets/props\ n\ decorations/generic-rpg-rock03.png');
+  background-image: url('/assets/props\ n\ decorations/generic-rpg-rock03.png');
+  background-color: transparent;
+  background-size: cover;
+  background-size: 23px auto;
 }
 
 .tree {
-  background-image: url('/public/assets/props\ n\ decorations/generic-rpg-tree01.png');
+  background-image: url('/assets/props\ n\ decorations/generic-rpg-tree01.png');
+  background-color: transparent;
+  background-size: cover;
+  background-size: 22px 22px;
 }
 
 .grass {
-  background-image: url('/public/assets/tiles/generic-rpg-tile03.png');
+  background-image: url('/assets/tiles/generic-rpg-tile03.png');
+  background-color: transparent;
+  width: 23px;
+  height: 23px;
+}
+
+.vfence {
+  background-image: url('/assets/props\ n\ decorations/generic-rpg-fence-raw11.png');
+  background-color: transparent;
+  background-size: 22px 22px;
+}
+
+.hfence {
+  background-image: url('/assets/props\ n\ decorations/generic-rpg-fence-raw03.png');
+  background-color: transparent;
+  background-size: 22px 22px;
+}
+
+.jfence {
+  background-image: url('/assets/props\ n\ decorations/generic-rpg-fence-raw05.png');
+  background-color: transparent;
+  background-size: 22px 22px;
+}
+
+.walk {
+  background-image: url('/assets/props\ n\ decorations/generic-rpg-fence-raw05.png');
+  background-color: transparent;
+  background-size: 22px 22px;
+}
+
+.clay {
+  background-image: url('/assets/tiles/generic-rpg-tile09.png');
+  background-color: transparent;
+  width: 23px;
+  height: 23px;
+}
+
+.water {
+  background-image: url('/assets/tiles/generic-rpg-tile-waterfall02.png');
+  background-color: transparent;
+  width: 23px;
+  height: 23px;
 }
