@@ -26,6 +26,12 @@ code {
 .info {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
   text-justify: center;
+  max-width: 25%;
+}
+
+.info p {
+  background-color: lightgreen;
+  padding: 12px;
+  box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.15);
 }

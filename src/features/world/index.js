@@ -3,11 +3,12 @@ import { connect } from 'react-redux';
 import Player from '../player';
 import Map from '../map';
 import store from '../../state/store';
-import { updateTiles } from '../../data/maps/1';
+import { updateTiles, getInfo } from '../../data/maps/1';
 
 function World(props) {
+  let tiles = []
   const getTiles = async () => {
-    const tiles = await updateTiles();
+  tiles = await updateTiles();
 
     store.dispatch({ 
       type: 'ADD_TILES',
@@ -15,7 +16,7 @@ function World(props) {
         tiles
       }
     })
-    console.log(tiles)
+    
   }
 
   getTiles();
@@ -34,13 +35,13 @@ function World(props) {
         <Player />
       </div>
       <div className="info">
-        <p>Current Room: {props.room ? props.room : 0}</p>
-        <p>North: </p>
-        <p>South: </p>
-        <p>East: </p>
-        <p>West: </p>
+        <p>Current Room: {props.title ? props.title : 0}</p>
+        <p>Room Description: {props.description ? props.description : ""}</p>
         <p>
           Reach the Treasure room: Navigate with your arrow keys
+        </p>
+        <p>
+          Other Players
         </p>
       </div>
     </div>
@@ -49,8 +50,7 @@ function World(props) {
 
 function mapStateToProps(state){
   return {
-    position: state.map.position,
-    room: state.map.room
+    ...state.player
   }
 }
 

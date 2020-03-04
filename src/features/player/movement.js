@@ -1,5 +1,6 @@
 import store from '../../state/store'
 import { SPRITE_SIZE, MAP_WIDTH, MAP_HEIGHT } from '../../config/constants'
+import { getInfo } from '../../data/maps/1';
 
 export default function handleMovement(player) {
   function attemptMove(direction){
@@ -26,6 +27,15 @@ export default function handleMovement(player) {
         return [ oldPos[0], oldPos[1] ]
     }
   }
+  const getDescription = async(room_num) => {
+    const tiles = await getInfo();
+    console.log(tiles[room_num].description)
+
+    return {
+      title: tiles[room_num].title,
+      description: tiles[room_num].description
+    };
+  }
 
   function observeBoundaries (oldPos, newPos) {
     return (newPos[0] >= 0 && newPos[0] <= MAP_WIDTH &&
@@ -41,18 +51,26 @@ export default function handleMovement(player) {
     return nextTile < 2 ? true : false
   }
   
-  function directionMove(newPos){
+  const directionMove = async (newPos) => {
+    store.dispatch({
+      type: 'MOVE_PLAYER',
+      payload: {
+        position: newPos,
+      }
+    })
     let vPos = newPos[0]/23;
     let hPos = newPos[1]/23;
     vPos = parseInt(vPos/5);
     hPos = parseInt(hPos/3);
     const roomKey = hPos*10 + vPos;
-    
+    const desc = await getDescription(roomKey);
+
     store.dispatch({
       type: 'MOVE_PLAYER',
       payload: {
-        position: newPos,
-        room: roomKey
+        room: roomKey,
+        description: desc.description,
+        title: desc.title
       }
     })
   }
