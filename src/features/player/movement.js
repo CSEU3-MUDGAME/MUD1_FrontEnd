@@ -1,4 +1,4 @@
-import store from '../../config/store'
+import store from '../../state/store'
 import { SPRITE_SIZE, MAP_WIDTH, MAP_HEIGHT } from '../../config/constants'
 
 export default function handleMovement(player) {

@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { Switch } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import World from './features/world'
 import Login from "./Pages/Login";
 import AuthLayout from "./layout/AuthLayout";
@@ -11,7 +11,7 @@ function App() {
     <Switch>
       <AuthLayout path="/login" component={Login} page="login" />
       <AuthLayout path="/register" component={Register} page="register" />
-      <AuthLayout path="/world" component={World} page="world" />
+      <Route exact path="/world" component={World} page="world" />
     </Switch>
   );
 }
