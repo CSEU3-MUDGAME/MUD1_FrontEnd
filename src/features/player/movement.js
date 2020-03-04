@@ -46,12 +46,13 @@ export default function handleMovement(player) {
     let hPos = newPos[1]/23;
     vPos = parseInt(vPos/5);
     hPos = parseInt(hPos/3);
+    const roomKey = hPos*10 + vPos;
     
-    console.log("vertical: ", vPos, "horizontal:", hPos)
     store.dispatch({
       type: 'MOVE_PLAYER',
       payload: {
-        position: newPos
+        position: newPos,
+        room: roomKey
       }
     })
   }

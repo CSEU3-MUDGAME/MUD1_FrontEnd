@@ -34,7 +34,7 @@ function World(props) {
         <Player />
       </div>
       <div className="info">
-        <p>Current Room: {props.position ? props.position[1] : props.position}</p>
+        <p>Current Room: {props.room ? props.room : 0}</p>
         <p>North: </p>
         <p>South: </p>
         <p>East: </p>
@@ -47,13 +47,10 @@ function World(props) {
   )
 }
 
-function getCurrentRoom(pos1){
-  console.log(pos1)
-}
-
 function mapStateToProps(state){
   return {
-    position: state.map.position
+    position: state.map.position,
+    room: state.map.room
   }
 }
 
