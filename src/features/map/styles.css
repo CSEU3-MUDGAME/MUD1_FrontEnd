@@ -1,5 +1,6 @@
 .tile {
   display: inline-flex;
+  min-width: 23px;
 }
 
 .rock {
@@ -14,6 +15,7 @@
   background-color: transparent;
   background-size: cover;
   background-size: 23px 23px;
+  min-width: 23px;
 }
 
 .grass {
@@ -21,6 +23,7 @@
   background-color: transparent;
   width: 23px;
   height: 23px;
+  min-width: 23px;
 }
 
 .vfence {

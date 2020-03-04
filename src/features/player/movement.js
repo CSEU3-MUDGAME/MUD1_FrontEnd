@@ -42,7 +42,12 @@ export default function handleMovement(player) {
   }
   
   function directionMove(newPos){
+    let vPos = newPos[0]/23;
+    let hPos = newPos[1]/23;
+    vPos = parseInt(vPos/5);
+    hPos = parseInt(hPos/3);
     
+    console.log("vertical: ", vPos, "horizontal:", hPos)
     store.dispatch({
       type: 'MOVE_PLAYER',
       payload: {

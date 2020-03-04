@@ -30,8 +30,8 @@ function Map(props){
     return <div
       className={`${getTileSprite(props.tile)}`}
       style={{
-        minHeight: '20px',
-        minWidth: '20px'
+        minHeight: '23px',
+        minWidth: '23px'
       }}
     ></div>
   }
@@ -54,8 +54,8 @@ function Map(props){
         position: 'relative',
         top: '0px',
         left: '0px',
-        width: '1600px',
-        height: '830px',
+        width: '1160px',
+        height: '700px',
         border: '4px solid white',
         backgroundColor: '#6DF7B1'
       }}>

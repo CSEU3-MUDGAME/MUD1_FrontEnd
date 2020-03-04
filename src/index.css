@@ -15,3 +15,17 @@ code {
 * {
   box-sizing: border-box;
 }
+
+.main {
+  display: flex;
+  flex-direction: row;
+  padding: 50px;
+  background-color: aqua;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-justify: center;
+}
