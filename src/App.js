@@ -1,12 +1,20 @@
-import React from 'react';
+import React from "react";
+import "./App.css";
+import { Switch } from "react-router-dom";
 import World from './features/world'
+import Login from "./Pages/Login";
+import AuthLayout from "./layout/AuthLayout";
+import Register from "./Pages/Register";
 
 function App() {
   return (
-    <div className="App">
-      <World />
-    </div>
+    <Switch>
+      <AuthLayout path="/login" component={Login} page="login" />
+      <AuthLayout path="/register" component={Register} page="register" />
+      <AuthLayout path="/world" component={World} page="world" />
+    </Switch>
   );
 }
 
 export default App;
+
