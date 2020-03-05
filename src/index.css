@@ -21,7 +21,13 @@ code {
   flex-direction: row;
   padding: 50px;
   background-color: aqua;
-  min-height: 75vh;
+}
+
+.entire-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  justify-content: space-between;
 }
 
 .info {
@@ -43,6 +49,6 @@ h1 {
   text-align: center;
   background-color: lightgreen;
   margin: 0;
-  padding: 30px;
+  padding: 17px;
   border-bottom: 4px solid white;
 }
