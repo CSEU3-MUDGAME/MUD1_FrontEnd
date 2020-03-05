@@ -51,19 +51,13 @@ export default function handleMovement(player) {
   }
   
   const directionMove = async (newPos) => {
-    store.dispatch({
-      type: 'MOVE_PLAYER',
-      payload: {
-        position: newPos,
-      }
-    })
+    
     let vPos = newPos[0]/23;
     let hPos = newPos[1]/23;
     vPos = parseInt(vPos/5);
     hPos = parseInt(hPos/3);
     const roomKey = hPos*10 + vPos;
     const desc = await getDescription(roomKey);
-
     store.dispatch({
       type: 'MOVE_PLAYER',
       payload: {
