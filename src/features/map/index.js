@@ -1,77 +1,83 @@
-import React from 'react';
-import { connect } from 'react-redux'
-import './styles.css'
+import React from "react";
+import { connect } from "react-redux";
+import "./styles.css";
 
-function Map(props){
-  function getTileSprite(type){
-    switch(type){
+function Map(props) {
+  function getTileSprite(type) {
+    switch (type) {
       case 0:
-        return 'grass'
+        return "grass";
       case 1:
-        return 'clay'
+        return "clay";
       case 2:
-        return 'vfence'
+        return "vfence";
       case 3:
-        return 'hfence'
+        return "hfence";
       case 4:
-        return 'jfence'
+        return "jfence";
       case 5:
-        return 'rock'
+        return "rock";
       case 6:
-        return 'tree'
+        return "tree";
       case 7:
-        return 'water'
+        return "water";
       case 20:
-        return 'crate'
+        return "crate";
       default:
-        return 'grass'
+        return "grass";
     }
   }
 
   function MapTile(props) {
-    return <div
-      className={`${getTileSprite(props.tile)}`}
-      style={{
-        minHeight: '23px',
-        minWidth: '23px'
-      }}
-    ></div>
+    return (
+      <div
+        className={`${getTileSprite(props.tile)}`}
+        style={{
+          minHeight: "23px",
+          minWidth: "23px"
+        }}
+      ></div>
+    );
   }
-  function  MapRow(props){
-    return <div className='tile'
-      style={{
-        display: 'flex',
-        flexDirection: 'row'
-      }}
+  function MapRow(props) {
+    return (
+      <div
+        className="tile"
+        style={{
+          display: "flex",
+          flexDirection: "row"
+        }}
       >
-      {
-        props.tiles.map(tile => <MapTile tile={tile} />)
-      }
+        {props.tiles.map(tile => (
+          <MapTile tile={tile} />
+        ))}
       </div>
-    }
+    );
+  }
 
-  return(
+  return (
     <div
       style={{
-        position: 'relative',
-        top: '0px',
-        left: '0px',
-        width: '1160px',
-        height: '700px',
-        border: '4px solid white',
-        backgroundColor: '#6DF7B1'
-      }}>
-       {
-         props.tiles.map( row => <MapRow tiles={row} />)
-       }
+        position: "relative",
+        top: "0px",
+        left: "0px",
+        width: "1160px",
+        height: "700px",
+        border: "4px solid #F9BA02",
+        backgroundColor: "#6DF7B1"
+      }}
+    >
+      {props.tiles.map(row => (
+        <MapRow tiles={row} />
+      ))}
     </div>
-  )
+  );
 }
 
-function mapStateToProps(state){
+function mapStateToProps(state) {
   return {
     tiles: state.map.tiles
-  }
+  };
 }
 
 export default connect(mapStateToProps)(Map);

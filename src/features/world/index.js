@@ -39,19 +39,38 @@ function World(props) {
           style={{
             position: "relative",
             width: "1000px",
-            maxHeight: "1200px",
-            margin: "20px auto"
+            maxHeight: "1200px"
           }}
         >
           <Map />
           <Player />
         </div>
         <div className="info">
-          <p>Current Room: {props.currentPosition ? props.currentPosition.name : 0}</p>
-          <p>Room Description: {props.currentPosition ? props.currentPosition.description : ""}</p>
-          <p style={{ backgroundColor: `${props.room === 99 ? 'yellow' : 'lightgreen'}`}}>{props.room === 99 ? "Mission Accomplished!" : "Reach the Treasure room: Navigate with your arrow keys"}</p>
-          <p>Other Players In Same Room: <br/>
-          {props.otherUsers.map(user => <>{user}<br/></>)}
+          <p className="world-ui">
+            Current Room:{" "}
+            {props.currentPosition ? props.currentPosition.name : 0}
+          </p>
+          <p className="world-ui">
+            Room Description:{" "}
+            {props.currentPosition ? props.currentPosition.description : ""}
+          </p>
+          <p
+            style={{
+              backgroundColor: `${props.room === 99 ? "yellow" : "lightgreen"}`
+            }}
+          >
+            {props.room === 99
+              ? "Mission Accomplished!"
+              : "Reach the Treasure room: Navigate with your arrow keys"}
+          </p>
+          <p className="world-ui">
+            Other Players In Same Room: <br />
+            {props.otherUsers.map(user => (
+              <>
+                {user}
+                <br />
+              </>
+            ))}
           </p>
         </div>
       </div>

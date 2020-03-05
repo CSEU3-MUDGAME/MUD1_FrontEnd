@@ -19,15 +19,17 @@ code {
 .main {
   display: flex;
   flex-direction: row;
-  padding: 50px;
-  background-color: aqua;
+  justify-content: space-between;
+  padding: 0 100px;
+  background-color: #333;
 }
 
 .entire-page {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  justify-content: space-between;
+  /* justify-content: space-between; */
+  background-color: #333;
 }
 
 .info {
@@ -47,8 +49,29 @@ code {
 
 h1 {
   text-align: center;
-  background-color: lightgreen;
+  font-family: "Nosifer", cursive;
+  /* background-color: lightgreen; */
+  background-color: #333;
+  color: #f9ba02;
+  font-size: 60px;
   margin: 0;
   padding: 17px;
-  border-bottom: 4px solid white;
+  /* border-bottom: 4px solid white; */
+}
+
+p,
+h2,
+h3,
+h4 {
+  font-family: "Oxanium", cursive;
+  font-weight: bold;
+}
+
+.world-ui {
+  padding: none;
+  background-image: url("/assets/UI/generic-rpg-ui-text-box.png");
+  background-color: transparent;
+  background-size: cover;
+  border: 0px !important;
+  padding-left: 25px !important;
 }
