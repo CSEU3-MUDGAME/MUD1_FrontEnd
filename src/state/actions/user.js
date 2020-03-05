@@ -51,10 +51,10 @@ export const initialize = () => async dispatch => {
   }
 };
 
-export const move = direction => async dispatch => {
+export const move = newId => async dispatch => {
   dispatch({ type: "MOVE" });
   try {
-    const { data } = await axiosWithAuth().post("/api/adv/move", { direction });
+    const { data } = await axiosWithAuth().post("/api/adv/move", { newId });
     dispatch({ type: "MOVE_SUCCESS", payload: data });
   } catch (error) {
     dispatch({ type: "MOVE_FAILURE", payload: error.message });
