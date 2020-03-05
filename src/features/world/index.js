@@ -26,7 +26,7 @@ function World(props) {
   }, []);
 
   return (
-    <div>
+    <div className="entire-page">
       <h1>Field Explorer</h1>
       <div className="main">
         <div

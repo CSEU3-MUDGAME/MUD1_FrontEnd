@@ -63,3 +63,8 @@
   width: 23px;
   height: 23px;
 }
+
+
+.entire-page {
+  max-height: 100vh;
+}
