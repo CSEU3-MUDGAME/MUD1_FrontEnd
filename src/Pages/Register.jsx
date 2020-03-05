@@ -2,8 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import { useForm } from "../utils/hooks";
 import { register } from "../state/actions/user";
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
 
-const Register = () => {
+const Register = ({ register, history }) => {
   const { onChange, onSubmit, values } = useForm(handleSubmit, {
     username: "",
     password: "",
@@ -11,7 +13,7 @@ const Register = () => {
   });
 
   function handleSubmit() {
-    register();
+    register(values.username, values.password, values.confirmPassword, history);
   }
   return (
     <Div>
@@ -102,4 +104,4 @@ const Button = styled.input`
     opacity: 0.7;
   }
 `;
-export default Register;
+export default withRouter(connect(null, { register })(Register));

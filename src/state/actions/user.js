@@ -1,10 +1,10 @@
 import axios from "axios";
 import axiosWithAuth from "../../utils/axiosWithAuth";
 
-export const login = (username, password) => async dispatch => {
+export const login = (username, password, history) => async dispatch => {
   try {
     const { data } = await axios.post(
-      "https://lambda-mud-test.herokuapp.com/api/login",
+      "https://cswk1-mud-game.herokuapp.com/api/login/",
       {
         username,
         password
@@ -12,22 +12,30 @@ export const login = (username, password) => async dispatch => {
     );
     localStorage.setItem("token", data.key);
     dispatch({ type: "LOGIN_SUCCESS", payload: username });
+    history.push("/world");
   } catch (error) {
     dispatch({ type: "LOGIN_FAILURE", payload: error.message });
   }
 };
 
-export const register = (username, password) => async dispatch => {
+export const register = (
+  username,
+  password,
+  confirmPassword,
+  history
+) => async dispatch => {
   try {
     const { data } = await axios.post(
-      "https://lambda-mud-test.herokuapp.com/api/registration",
+      "https://cswk1-mud-game.herokuapp.com/api/registration/",
       {
         username,
-        password
+        password1: password,
+        password2: confirmPassword
       }
     );
     localStorage.setItem("token", data.key);
     dispatch({ type: "LOGIN_SUCCESS", payload: username });
+    history.push("/world");
   } catch (error) {
     dispatch({ type: "LOGIN_FAILURE", payload: error.message });
   }
