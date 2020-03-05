@@ -110,4 +110,5 @@ const getInfo = async () => {
   return sortedTiles
 }
 
+
 export { updateTiles, getInfo }
