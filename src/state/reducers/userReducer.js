@@ -3,7 +3,7 @@ const initialState = {
   currentPosition: {},
   loggedIn: false,
   loading: false,
-  error: "",
+  error: {},
   otherUsers: []
 };
 

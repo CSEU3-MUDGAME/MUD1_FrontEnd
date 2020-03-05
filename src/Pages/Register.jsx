@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useForm } from "../utils/hooks";
 import { register } from "../state/actions/user";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
-const Register = ({ register, history }) => {
+const Register = ({ register, history, error }) => {
   const { onChange, onSubmit, values } = useForm(handleSubmit, {
     username: "",
     password: "",
@@ -14,6 +14,21 @@ const Register = ({ register, history }) => {
 
   const [loading, setLoading] = useState(false);
 
+  let [localError, setLocalError] = useState({ ...error });
+
+  useEffect(() => {
+    setLocalError({ ...error });
+  }, [error]);
+
+  useEffect(() => {
+    let timer = setTimeout(() => {
+      setLocalError({});
+    }, 5000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [localError]);
   async function handleSubmit() {
     setLoading(true);
     await register(
@@ -22,6 +37,7 @@ const Register = ({ register, history }) => {
       values.confirmPassword,
       history
     );
+    setLoading(false);
   }
   return (
     <Div>
@@ -65,13 +81,17 @@ const Register = ({ register, history }) => {
           disabled={loading}
         />
       </Form>
+      {Object.keys(localError).length > 0 && (
+        <Error>Something went wrong. Try Again.</Error>
+      )}
     </Div>
   );
 };
 
 const Div = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   margin-top: 20px;
 `;
 
@@ -116,4 +136,9 @@ const Button = styled.input`
     opacity: 0.7;
   }
 `;
-export default withRouter(connect(null, { register })(Register));
+
+const Error = styled.p`
+  color: red;
+  font-family: "Oxanium", cursive;
+`;
+export default withRouter(connect(state => state.user, { register })(Register));

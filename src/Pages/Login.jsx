@@ -1,21 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useForm } from "../utils/hooks";
 import { login } from "../state/actions/user";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
-const Login = ({ login, history }) => {
+const Login = ({ login, history, error }) => {
   const { onChange, onSubmit, values } = useForm(handleSubmit, {
     username: "",
     password: ""
   });
   const [loading, setLoading] = useState(false);
 
+  let [localError, setLocalError] = useState({ ...error });
+
   async function handleSubmit() {
     setLoading(true);
     await login(values.username, values.password, history);
+    setLoading(false);
   }
+
+  useEffect(() => {
+    setLocalError({ ...error });
+  }, [error]);
+
+  useEffect(() => {
+    let timer = setTimeout(() => {
+      setLocalError({});
+    }, 5000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [localError]);
 
   return (
     <Div>
@@ -48,13 +65,17 @@ const Login = ({ login, history }) => {
           disabled={loading}
         />
       </Form>
+      {Object.keys(localError).length > 0 && (
+        <Error>Something went wrong. Try Again.</Error>
+      )}
     </Div>
   );
 };
 
 const Div = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   margin-top: 20px;
 `;
 
@@ -98,4 +119,9 @@ const Button = styled.input`
     opacity: 0.7;
   }
 `;
-export default withRouter(connect(null, { login })(Login));
+
+const Error = styled.p`
+  color: red;
+  font-family: "Oxanium", cursive;
+`;
+export default withRouter(connect(state => state.user, { login })(Login));

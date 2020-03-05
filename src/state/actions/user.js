@@ -14,7 +14,7 @@ export const login = (username, password, history) => async dispatch => {
     dispatch({ type: "LOGIN_SUCCESS", payload: username });
     history.push("/world");
   } catch (error) {
-    dispatch({ type: "LOGIN_FAILURE", payload: error.message });
+    dispatch({ type: "LOGIN_FAILURE", payload: error });
   }
 };
 
@@ -37,7 +37,7 @@ export const register = (
     dispatch({ type: "LOGIN_SUCCESS", payload: username });
     history.push("/world");
   } catch (error) {
-    dispatch({ type: "LOGIN_FAILURE", payload: error.message });
+    dispatch({ type: "LOGIN_FAILURE", payload: error });
   }
 };
 
