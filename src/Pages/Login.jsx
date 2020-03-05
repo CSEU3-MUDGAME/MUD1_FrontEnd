@@ -3,15 +3,16 @@ import styled from "styled-components";
 import { useForm } from "../utils/hooks";
 import { login } from "../state/actions/user";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
-const Login = ({ login }) => {
+const Login = ({ login, history }) => {
   const { onChange, onSubmit, values } = useForm(handleSubmit, {
     username: "",
     password: ""
   });
 
   function handleSubmit() {
-    login();
+    login(values.username, values.password, history);
   }
 
   return (
@@ -91,4 +92,4 @@ const Button = styled.input`
     opacity: 0.7;
   }
 `;
-export default connect(null, { login })(Login);
+export default withRouter(connect(null, { login })(Login));

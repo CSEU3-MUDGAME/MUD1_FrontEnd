@@ -3,6 +3,9 @@ import { Route, Link } from "react-router-dom";
 import styled from "styled-components";
 
 const AuthLayout = ({ component: Component, page, ...rest }) => {
+  if (localStorage.getItem("token")) {
+    window.location.href = "/world";
+  }
   return (
     <Route
       {...rest}
