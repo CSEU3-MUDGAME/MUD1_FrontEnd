@@ -25,6 +25,22 @@ code {
   background-color: #333;
 }
 
+.nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.nav h3 {
+  font-family: "Nosifer", cursive;
+  color: #f9ba02;
+  cursor: pointer;
+}
+
+.nav h3:hover {
+  color: aqua;
+}
+
 .entire-page {
   display: flex;
   flex-direction: column;
@@ -62,7 +78,6 @@ h1 {
 
 p,
 h2,
-h3,
 h4 {
   font-family: "Oxanium", cursive;
   font-weight: bold;

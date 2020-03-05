@@ -34,7 +34,13 @@ function World(props) {
 
   return (
     <div className="entire-page">
+      <div className="nav">
       <h1>Field Explorer</h1>
+      <h3 onClick={() => {
+        localStorage.clear();
+        props.history.push('/login')
+      }}>Sign Out</h3>
+      </div>
       <div className="main">
         <div
           style={{
