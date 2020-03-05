@@ -19,6 +19,7 @@ code {
 .main {
   display: flex;
   flex-direction: row;
+  flex-flow: wrap;
   justify-content: space-between;
   padding: 0 100px;
   background-color: #333;
