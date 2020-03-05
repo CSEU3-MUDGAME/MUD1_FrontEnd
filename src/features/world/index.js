@@ -5,10 +5,10 @@ import Map from "../map";
 import store from "../../state/store";
 import { updateTiles } from "../../data/maps/1";
 
-if (!localStorage.getItem("token")) {
-  window.location.href = "/login";
-}
 function World(props) {
+  if (!localStorage.getItem("token")) {
+    window.location.href = "/login";
+  }
   let tiles = [];
   const getTiles = async () => {
     tiles = await updateTiles();

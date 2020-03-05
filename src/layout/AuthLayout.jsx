@@ -2,10 +2,10 @@ import React from "react";
 import { Route, Link } from "react-router-dom";
 import styled from "styled-components";
 
-if (localStorage.getItem("token")) {
-  window.location.href = "/world";
-}
 const AuthLayout = ({ component: Component, page, ...rest }) => {
+  if (localStorage.getItem("token")) {
+    window.location.href = "/world";
+  }
   return (
     <Route
       {...rest}
