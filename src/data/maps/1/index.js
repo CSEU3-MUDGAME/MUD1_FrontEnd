@@ -100,7 +100,7 @@ const updateTiles = async () => {
       w--;
     }
   }
-  return tiles
+  return { tiles, sortedTiles }
 }
 
 const getInfo = async () => {

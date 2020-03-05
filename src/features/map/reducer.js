@@ -1,5 +1,6 @@
 const initialState = {
-  tiles: []
+  tiles: [],
+  sortedTiles: []
 }
 
 const mapReducer = (state=initialState, action) => {

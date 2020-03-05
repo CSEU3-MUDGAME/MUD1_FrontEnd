@@ -17,7 +17,8 @@ function World(props) {
     store.dispatch({
       type: "ADD_TILES",
       payload: {
-        tiles
+        tiles: tiles.tiles,
+        sortedTiles: tiles.sortedTiles
       }
     });
   };
@@ -48,11 +49,11 @@ function World(props) {
         <div className="info">
           <p className="world-ui">
             Current Room:{" "}
-            {props.currentPosition ? props.currentPosition.name : 0}
+            {props.sortedTiles.length > 0 ? props.sortedTiles[props.room].title : 0}
           </p>
           <p className="world-ui">
             Room Description:{" "}
-            {props.currentPosition ? props.currentPosition.description : ""}
+            {props.sortedTiles.length > 0? props.sortedTiles[props.room].description : ""}
           </p>
           <p
             style={{
@@ -81,7 +82,8 @@ function World(props) {
 function mapStateToProps(state) {
   return {
     ...state.player,
-    ...state.user
+    ...state.user,
+    ...state.map
   };
 }
 
