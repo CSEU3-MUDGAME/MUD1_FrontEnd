@@ -104,4 +104,12 @@ const updateTiles = async () => {
   return tiles
 }
 
-export { updateTiles }
+const getInfo = async () => {
+  const response =  await axios.get('https://cswk1-mud-game.herokuapp.com/api/adv/rooms');
+  const sortedTiles = await response.data.sort((a, b) => a.id - b.id)
+
+  return sortedTiles
+}
+
+
+export { updateTiles, getInfo }
