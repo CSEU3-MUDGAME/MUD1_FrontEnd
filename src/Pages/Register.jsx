@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useForm } from "../utils/hooks";
 import { register } from "../state/actions/user";
@@ -12,8 +12,16 @@ const Register = ({ register, history }) => {
     confirmPassword: ""
   });
 
-  function handleSubmit() {
-    register(values.username, values.password, values.confirmPassword, history);
+  const [loading, setLoading] = useState(false);
+
+  async function handleSubmit() {
+    setLoading(true);
+    await register(
+      values.username,
+      values.password,
+      values.confirmPassword,
+      history
+    );
   }
   return (
     <Div>
@@ -51,7 +59,11 @@ const Register = ({ register, history }) => {
             required
           />
         </div>
-        <Button type="submit" value="Register" />
+        <Button
+          type="submit"
+          value={loading ? "Loading..." : "Register"}
+          disabled={loading}
+        />
       </Form>
     </Div>
   );

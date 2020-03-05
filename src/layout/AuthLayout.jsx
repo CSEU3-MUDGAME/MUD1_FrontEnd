@@ -59,7 +59,7 @@ const Image = styled.img`
 const InnerContainer = styled.div`
   display: flex;
   justify-content: center;
-  height: 70vh;
+  height: 80vh;
 `;
 const ImageContainer = styled.div`
   display: flex;

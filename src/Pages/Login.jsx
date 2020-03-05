@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useForm } from "../utils/hooks";
 import { login } from "../state/actions/user";
@@ -10,9 +10,11 @@ const Login = ({ login, history }) => {
     username: "",
     password: ""
   });
+  const [loading, setLoading] = useState(false);
 
-  function handleSubmit() {
-    login(values.username, values.password, history);
+  async function handleSubmit() {
+    setLoading(true);
+    await login(values.username, values.password, history);
   }
 
   return (
@@ -40,7 +42,11 @@ const Login = ({ login, history }) => {
             required
           />
         </div>
-        <Button type="submit" value="Sign in" />
+        <Button
+          type="submit"
+          value={loading ? "Loading..." : "Login"}
+          disabled={loading}
+        />
       </Form>
     </Div>
   );
