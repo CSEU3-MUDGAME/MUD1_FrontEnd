@@ -15,7 +15,6 @@ function World(props) {
         tiles
       }
     })
-    console.log(tiles)
   }
 
   getTiles();
