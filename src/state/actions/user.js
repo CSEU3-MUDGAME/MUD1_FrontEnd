@@ -44,9 +44,19 @@ export const register = (
 export const initialize = () => async dispatch => {
   dispatch({ type: "INITIALIZE" });
   try {
-    const { data } = await axiosWithAuth().post("/api/adv/init");
+    const { data } = await axiosWithAuth().get("/api/adv/init");
     dispatch({ type: "INITIALIZE_SUCCESS", payload: data });
   } catch (error) {
     dispatch({ type: "INITIALIZE_FAILURE", payload: error.message });
+  }
+};
+
+export const move = direction => async dispatch => {
+  dispatch({ type: "MOVE" });
+  try {
+    const { data } = await axiosWithAuth().post("/api/adv/move", { direction });
+    dispatch({ type: "MOVE_SUCCESS", payload: data });
+  } catch (error) {
+    dispatch({ type: "MOVE_FAILURE", payload: error.message });
   }
 };

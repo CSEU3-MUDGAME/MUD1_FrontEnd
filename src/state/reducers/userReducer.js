@@ -1,9 +1,10 @@
 const initialState = {
   username: "",
-  currentPosition: [],
+  currentPosition: {},
   loggedIn: false,
   loading: false,
-  error: ""
+  error: "",
+  otherUsers: []
 };
 
 const userReducer = (state = initialState, action) => {
@@ -29,6 +30,29 @@ const userReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         error: action.payload
+      };
+
+    case "INITIALIZE_SUCCESS":
+      return {
+        ...state,
+        username: action.payload.name,
+        currentPosition: {
+          name: action.payload.title,
+          description: action.payload.description
+        },
+        otherUsers: [...action.payload.players],
+        loggedIn: true
+      };
+
+    case "MOVE_SUCCESS":
+      return {
+        ...state,
+        username: action.payload.name,
+        currentPosition: {
+          name: action.payload.title,
+          description: action.payload.description
+        },
+        otherUsers: [...action.payload.players]
       };
 
     default:

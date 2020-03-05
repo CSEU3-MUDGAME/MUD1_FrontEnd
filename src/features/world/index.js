@@ -4,6 +4,7 @@ import Player from "../player";
 import Map from "../map";
 import store from "../../state/store";
 import { updateTiles } from "../../data/maps/1";
+import { initialize } from "../../state/actions/user";
 
 function World(props) {
   if (!localStorage.getItem("token")) {
@@ -22,7 +23,12 @@ function World(props) {
   };
 
   useEffect(() => {
-    getTiles();
+    const start = async () => {
+      await getTiles();
+      props.initialize();
+    };
+
+    start();
   }, []);
 
   return (
@@ -57,4 +63,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(World);
+export default connect(mapStateToProps, { initialize })(World);
