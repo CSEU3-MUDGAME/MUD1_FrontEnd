@@ -6,8 +6,9 @@ import store from '../../state/store';
 import { updateTiles } from '../../data/maps/1';
 
 function World(props) {
+  let tiles = []
   const getTiles = async () => {
-    const tiles = await updateTiles();
+  tiles = await updateTiles();
 
     store.dispatch({ 
       type: 'ADD_TILES',
@@ -15,45 +16,44 @@ function World(props) {
         tiles
       }
     })
-    console.log(tiles)
+    
   }
 
   getTiles();
   
   return(
-    <div className="main">
-      <div
-      style={{
-        position: 'relative',
-        width: '1000px',
-        maxHeight: '1200px',
-        margin: '20px auto'
-      }}
-      >
-        <Map />
-        <Player />
-      </div>
-      <div className="info">
-        <p>Current Room: {props.position ? props.position[1] : props.position}</p>
-        <p>North: </p>
-        <p>South: </p>
-        <p>East: </p>
-        <p>West: </p>
-        <p>
-          Reach the Treasure room: Navigate with your arrow keys
-        </p>
+    <div>
+      <h1>Field Explorer</h1>
+      <div className="main">
+        <div
+        style={{
+          position: 'relative',
+          width: '1000px',
+          maxHeight: '1200px',
+          margin: '20px auto'
+        }}
+        >
+          <Map />
+          <Player />
+        </div>
+        <div className="info">
+          <p>Current Room: {props.title ? props.title : 0}</p>
+          <p>Room Description: {props.description ? props.description : ""}</p>
+          <p>
+            Reach the Treasure room: Navigate with your arrow keys
+          </p>
+          <p>
+            Other Players
+          </p>
+        </div>
       </div>
     </div>
   )
 }
 
-function getCurrentRoom(pos1){
-  console.log(pos1)
-}
-
 function mapStateToProps(state){
   return {
-    position: state.map.position
+    ...state.player
   }
 }
 
