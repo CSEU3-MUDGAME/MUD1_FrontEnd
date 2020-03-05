@@ -47,10 +47,12 @@ function World(props) {
           <Player />
         </div>
         <div className="info">
-          <p>Current Room: {props.title ? props.title : 0}</p>
-          <p>Room Description: {props.description ? props.description : ""}</p>
-          <p>Reach the Treasure room: Navigate with your arrow keys</p>
-          <p>Other Players</p>
+          <p>Current Room: {props.currentPosition ? props.currentPosition.name : 0}</p>
+          <p>Room Description: {props.currentPosition ? props.currentPosition.description : ""}</p>
+          <p style={{ backgroundColor: `${props.room === 99 ? 'yellow' : 'lightgreen'}`}}>{props.room === 99 ? "Mission Accomplished!" : "Reach the Treasure room: Navigate with your arrow keys"}</p>
+          <p>Other Players In Same Room: <br/>
+          {props.otherUsers.map(user => <>{user}<br/></>)}
+          </p>
         </div>
       </div>
     </div>
@@ -59,7 +61,8 @@ function World(props) {
 
 function mapStateToProps(state) {
   return {
-    ...state.player
+    ...state.player,
+    ...state.user
   };
 }
 

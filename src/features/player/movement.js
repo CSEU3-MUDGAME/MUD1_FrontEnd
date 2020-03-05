@@ -1,6 +1,7 @@
 import store from '../../state/store'
 import { SPRITE_SIZE, MAP_WIDTH, MAP_HEIGHT } from '../../config/constants'
 import { getInfo } from '../../data/maps/1';
+import axiosWithAuth from '../../utils/axiosWithAuth'
 
 export default function handleMovement(player) {
   function attemptMove(direction){
@@ -29,11 +30,15 @@ export default function handleMovement(player) {
   }
   const getDescription = async(room_num) => {
     const tiles = await getInfo();
+    const newId = tiles[room_num].id;
 
-    return {
-      title: tiles[room_num].title,
-      description: tiles[room_num].description
-    };
+    store.dispatch({ type: "MOVE" });
+    try {
+      const { data } = await axiosWithAuth().post("/api/adv/move", { newId });
+      store.dispatch({ type: "MOVE_SUCCESS", payload: data });
+    } catch (error) {
+      store.dispatch({ type: "MOVE_FAILURE", payload: error.message });
+    }
   }
 
   function observeBoundaries (oldPos, newPos) {
@@ -51,27 +56,20 @@ export default function handleMovement(player) {
   }
   
   const directionMove = async (newPos) => {
-    store.dispatch({
-      type: 'MOVE_PLAYER',
-      payload: {
-        position: newPos,
-      }
-    })
     let vPos = newPos[0]/23;
     let hPos = newPos[1]/23;
     vPos = parseInt(vPos/5);
     hPos = parseInt(hPos/3);
     const roomKey = hPos*10 + vPos;
-    const desc = await getDescription(roomKey);
-
     store.dispatch({
       type: 'MOVE_PLAYER',
       payload: {
-        room: roomKey,
-        description: desc.description,
-        title: desc.title
+        position: newPos,
+        room: roomKey
       }
     })
+    
+    await getDescription(roomKey);
   }
 
   function handleKeyDown(e) {
