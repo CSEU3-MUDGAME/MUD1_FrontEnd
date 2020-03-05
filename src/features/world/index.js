@@ -12,10 +12,11 @@ function World(props) {
   }
   let tiles = [];
   const getTiles = async () => {
+    store.dispatch({ type: "ADD_TILES" });
     tiles = await updateTiles();
 
     store.dispatch({
-      type: "ADD_TILES",
+      type: "ADD_TILES_SUCCESS",
       payload: {
         tiles: tiles.tiles,
         sortedTiles: tiles.sortedTiles
@@ -32,14 +33,37 @@ function World(props) {
     start();
   }, []);
 
+  if (props.loading) {
+    return (
+      <div
+        style={{
+          backgroundColor: "#333",
+          width: "100vw",
+          height: "100vh",
+          poaition: "absolute",
+          top: 0,
+          left: 0
+        }}
+      >
+        <div className="nav">
+          <h1>Field Explorer</h1>
+        </div>{" "}
+        <div class="spinner"></div>
+      </div>
+    );
+  }
   return (
     <div className="entire-page">
       <div className="nav">
-      <h1>Field Explorer</h1>
-      <h3 onClick={() => {
-        localStorage.clear();
-        props.history.push('/login')
-      }}>Sign Out</h3>
+        <h1>Field Explorer</h1>
+        <h3
+          onClick={() => {
+            localStorage.clear();
+            props.history.push("/login");
+          }}
+        >
+          Sign Out
+        </h3>
       </div>
       <div className="main">
         <div
@@ -55,11 +79,15 @@ function World(props) {
         <div className="info">
           <p className="world-ui">
             Current Room:{" "}
-            {props.sortedTiles.length > 0 ? props.sortedTiles[props.room].title : 0}
+            {props.sortedTiles.length > 0
+              ? props.sortedTiles[props.room].title
+              : 0}
           </p>
           <p className="world-ui">
             Room Description:{" "}
-            {props.sortedTiles.length > 0? props.sortedTiles[props.room].description : ""}
+            {props.sortedTiles.length > 0
+              ? props.sortedTiles[props.room].description
+              : ""}
           </p>
           <p
             style={{
