@@ -29,7 +29,6 @@ export default function handleMovement(player) {
   }
   const getDescription = async(room_num) => {
     const tiles = await getInfo();
-    console.log(tiles[room_num].description)
 
     return {
       title: tiles[room_num].title,

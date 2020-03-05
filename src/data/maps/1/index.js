@@ -85,16 +85,16 @@ const updateTiles = async () => {
       let e_to = sortedTiles[w].e_to === 0 ? false : true;
       let s_to = sortedTiles[w].s_to === 0 ? false : true;
       let w_to = sortedTiles[w].w_to === 0 ? false : true;
-      if(e_to||i>15){
+      if(e_to){
         tiles[i-1][j]=0;
       }
       if(w_to){
         tiles[i-1][j-4]=0;
       }
-      if(s_to||j<=5||j===44){
+      if(s_to){
         tiles[i][j-2]=0;
       }
-      if(n_to||j<=5||j===44){
+      if(n_to){
         tiles[i-2][j-2]=0;
       }
       w--;
