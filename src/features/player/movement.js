@@ -75,16 +75,19 @@ export default function handleMovement(player) {
   }
 
   function handleKeyDown(e) {
-    e.preventDefault()
 
     switch(e.keyCode){
       case 37:
+        e.preventDefault()
         return attemptMove('WEST')
       case 38:
+        e.preventDefault()
         return attemptMove('NORTH')
       case 39:
+        e.preventDefault()
         return attemptMove('EAST')
       case 40:
+        e.preventDefault()
         return attemptMove('SOUTH')
       default:
         console.log(e.keyCode)
