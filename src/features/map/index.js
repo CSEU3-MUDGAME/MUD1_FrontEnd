@@ -21,6 +21,8 @@ function Map(props){
         return 'tree'
       case 7:
         return 'water'
+      case 20:
+        return 'crate'
       default:
         return 'grass'
     }

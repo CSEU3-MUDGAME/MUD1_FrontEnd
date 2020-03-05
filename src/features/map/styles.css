@@ -64,7 +64,11 @@
   height: 23px;
 }
 
-
+.crate {
+  background-image: url('/assets/props\ n\ decorations/generic-rpg-crate02.png');
+  background-color: transparent;
+  background-size: 23px 23px;
+}
 .entire-page {
   max-height: 100vh;
 }
